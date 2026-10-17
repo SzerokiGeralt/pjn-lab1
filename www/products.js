@@ -29,23 +29,6 @@ function createElement(tagName, className, text) {
 	return element;
 }
 
-function formatPrice(product) {
-	if (typeof product.cena === 'string') return product.cena;
-	return new Intl.NumberFormat('pl-PL', {
-		style: 'currency',
-		currency: product.waluta || 'PLN'
-	}).format(product.cena);
-}
-
-function parseAddedDate(date) {
-	if (typeof date !== 'string') return 0;
-	const polishDate = date.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
-	const parsed = polishDate
-		? new Date(Number(polishDate[3]), Number(polishDate[2]) - 1, Number(polishDate[1]))
-		: new Date(date);
-	return Number.isNaN(parsed.getTime()) ? 0 : parsed.getTime();
-}
-
 function productUrl(product) {
 	return `./product.html?id=${encodeURIComponent(product.id)}`;
 }
@@ -57,7 +40,7 @@ function createProductCard(product, columnClass) {
 	const title = createElement('h3', 'h5 card-title', product.nazwa);
 	const category = createElement('p', 'small text-muted mb-2', product.kategoria);
 	const description = createElement('p', 'card-text', product.opis);
-	const price = createElement('p', 'fw-bold text-success', formatPrice(product));
+	const price = createElement('p', 'fw-bold text-success', product.cena + " " + product.waluta);
 	const link = createElement('a', 'btn btn-outline-success', 'Zobacz produkt');
 
 	link.href = productUrl(product);
@@ -93,7 +76,7 @@ function renderProductDetails(product) {
 	const title = createElement('h1', 'mb-3', product.nazwa);
 	const category = createElement('p', 'text-muted', `${product.kategoria} · ${product.marka}`);
 	const description = createElement('p', 'lead', product.opis);
-	const price = createElement('p', 'h3 text-success fw-bold', formatPrice(product));
+	const price = createElement('p', 'h3 text-success fw-bold', product.cena + " " + product.waluta);
 	const available = createElement('p', 'mb-1', `${Boolean(product.aktywny) ? 'Dostępny' : 'Niedostępny'}`);
 	const stock = createElement('p', 'mb-4', `Na stanie: ${product.stan_magazynowy} ${product.jednostka || 'szt.'}`);
 	const backLink = createElement('a', 'btn btn-outline-success', 'Wróć do produktów');
@@ -181,9 +164,9 @@ async function loadProducts() {
 
 	const newestContainer = document.querySelector('#noweProdukty');
 	if (newestContainer) {
+		const randomIndex = Math.floor(Math.random() * (products.length-1));
 		const newestProducts = [...products]
-			.sort((a, b) => parseAddedDate(b.data_dodania) - parseAddedDate(a.data_dodania))
-			.slice(0, 2);
+			.slice(randomIndex, randomIndex+2);
 		renderCards(newestContainer, newestProducts, 'col-md-6');
 	}
 
