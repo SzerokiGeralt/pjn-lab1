@@ -5,6 +5,22 @@ const productListContainers = [
 ].filter(Boolean);
 const productDetailContainer = document.querySelector('#szczegolyProduktu');
 const topPicksContainer = document.querySelector('#topPicksProducts');
+const loadMoreDiv = document.querySelector('#pokazWiecej');
+
+var displayProducts = 30;
+
+function shuffleArray(array) {
+  let currentIndex = array.length;
+
+  while (currentIndex != 0) {
+
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
 
 function createElement(tagName, className, text) {
 	const element = document.createElement(tagName);
@@ -90,26 +106,53 @@ function renderProductDetails(product) {
 	const specsBody = createElement('div', 'card-body');
 	specsBody.append(createElement('h2', 'h5', 'Szczegóły produktu'));
 	const specs = [
-		['SKU', product.sku],
-		['Podkategoria', product.podkategoria],
-		['Ocena', product.ocena_srednia == null ? null : `${product.ocena_srednia} / 5 (${product.liczba_opinii} opinii)`],
-		['Waga', product.waga_g == null ? null : `${product.waga_g} g`],
-		['Długość', product.dlugosc_cm == null ? null : `${product.dlugosc_cm} cm`],
-		['Kolor', product.kolor],
-		['Materiał', product.material],
-		['Data dodania', product.data_dodania],
-		['EAN', product.ean],
-		['Dostawca', product.dostawca],
-		['VAT', product.stawka_vat]
+		['Podkategoria', product.podkategoria ?? 'brak informacji'],
+		['Ocena', product.ocena_srednia == null ? 'brak informacji' : `${product.ocena_srednia} / 5 (${product.liczba_opinii} opinii)`],
+		['Waga', product.waga_g == null ? 'brak informacji' : `${product.waga_g} g`],
+		['Długość', product.dlugosc_cm == null ? 'brak informacji' : `${product.dlugosc_cm} cm`],
+		['Kolor', product.kolor ?? 'brak informacji'],
+		['Materiał', product.material ?? 'brak informacji'],
+		['Data dodania', product.data_dodania ?? 'brak informacji']
 	];
-	const list = createElement('dl', 'row mb-0');
+
+	shuffleArray(specs);
+	
+	const specsList = createElement('dl', 'row mb-2');
 	specs.forEach(([label, value]) => {
-		list.append(
+		specsList.append(
 			createElement('dt', 'col-5', label),
 			createElement('dd', 'col-7', String(value))
 		);
 	});
-	specsBody.append(list);
+
+	const additionalSpecs = [
+		['SKU', product.sku ?? 'brak informacji'],
+		['EAN', product.ean ?? 'brak informacji'],
+		['Dostawca', product.dostawca ?? 'brak informacji'],
+		['VAT', product.stawka_vat ?? 'brak informacji'],
+		['Id', product.id ?? 'brak informacji']
+	]
+
+	shuffleArray(additionalSpecs);
+
+	const additionalSpecsDiv = createElement('div','collapse');
+	additionalSpecsDiv.setAttribute('id', 'demo');
+	const additionalSpecsList = createElement('dl', 'row mb-0');
+	additionalSpecsDiv.append(additionalSpecsList);
+	additionalSpecs.forEach(([label, value]) => {
+		additionalSpecsList.append(
+			createElement('dt', 'col-5', label),
+			createElement('dd', 'col-7', String(value))
+		);
+	});
+
+	specsBody.append(specsList);
+	const showDetailsButton = createElement('button', 'btn btn-primary mb-2', 'Dodatkowe informacje');
+	showDetailsButton.setAttribute('type', 'button');
+	showDetailsButton.setAttribute('data-bs-toggle', 'collapse');
+	showDetailsButton.setAttribute('data-bs-target', '#demo');
+	specsBody.append(showDetailsButton);
+	specsBody.append(additionalSpecsDiv);
 	specsCard.append(specsBody);
 	specsColumn.append(specsCard);
 	row.append(mainColumn, specsColumn);
@@ -153,7 +196,17 @@ async function loadProducts() {
 	}
 
 	if (document.querySelector('#listaProduktow')) {
-		renderCards(document.querySelector('#listaProduktow'), products);
+		const loadMoreButton = createElement("button","btn btn-primary bg-success border-success","Załaduj więcej");
+		loadMoreButton.setAttribute("onclick","loadMoreButtonClicked()")
+		if (displayProducts < products.length) 
+			{
+				loadMoreDiv.append(loadMoreButton);
+				//show button
+			} else {
+				loadMoreDiv.replaceChildren();
+				//hide button
+			}
+		renderCards(document.querySelector('#listaProduktow'), products.slice(0,displayProducts));
 	}
 
 	if (productDetailContainer) {
@@ -172,4 +225,36 @@ async function loadProducts() {
 
 if (productListContainers.length || productDetailContainer || topPicksContainer) {
 	loadProducts().catch(showError);
+}
+
+async function loadMoreButtonClicked() {
+	const loadingSpinner = createElement("span","spinner-border text-success");
+	loadMoreDiv.replaceChildren(loadingSpinner);
+
+	displayProducts += 30;
+
+	const response = await fetch('./products.json');
+	if (!response.ok) {
+		throw new Error(`Pobranie products.json nie powiodło się (HTTP ${response.status}).`);
+	}
+
+	const products = await response.json();
+	if (!Array.isArray(products)) {
+		throw new Error('products.json powinien zawierać tablicę produktów.');
+	}
+
+	const randomSleepTime = Math.floor(1701 * Math.random());
+	await new Promise(r => setTimeout(r, 300 + randomSleepTime));
+	
+	const loadMoreButton = createElement("button","btn btn-primary bg-success border-success","Załaduj więcej");
+	loadMoreButton.setAttribute("onclick","loadMoreButtonClicked()")
+	if (displayProducts < products.length) 
+		{
+			loadMoreDiv.replaceChildren(loadMoreButton);
+			//show button
+		} else {
+			loadMoreDiv.replaceChildren();
+			//hide button
+		}
+	renderCards(document.querySelector('#listaProduktow'), products.slice(0,displayProducts));
 }
