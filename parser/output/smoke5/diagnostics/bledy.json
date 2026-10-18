@@ -1,0 +1,22 @@
+[
+  {
+    "operacja": "smoke-1",
+    "proba": 1,
+    "blad": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"#szczegolyProduktu #demo.show\") to be visible\n",
+    "pliki": [
+      "001-smoke-1-proba-1.html",
+      "001-smoke-1-proba-1.png"
+    ],
+    "bledy_zapisu": []
+  },
+  {
+    "operacja": "smoke-1",
+    "proba": 2,
+    "blad": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"#szczegolyProduktu #demo.show\") to be visible\n",
+    "pliki": [
+      "002-smoke-1-proba-2.html",
+      "002-smoke-1-proba-2.png"
+    ],
+    "bledy_zapisu": []
+  }
+]

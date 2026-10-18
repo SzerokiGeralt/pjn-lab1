@@ -1,0 +1,286 @@
+{
+  "rekordy": 200,
+  "duplikaty_przed": 8,
+  "duplikaty_po": 0,
+  "braki": {
+    "id": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "nazwa": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "cena": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "waluta": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "kategoria": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "producent": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "dostepnosc": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "ocena": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "liczba_opinii": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "data_dodania": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "gwarancja": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "url": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "sku": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "podkategoria": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "opis": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "waga_g": {
+      "liczba": 40,
+      "procent": 20.0
+    },
+    "dlugosc_cm": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "kolor": {
+      "liczba": 40,
+      "procent": 20.0
+    },
+    "material": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "ean": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "dostawca": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "stawka_vat": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "stan_magazynowy": {
+      "liczba": 0,
+      "procent": 0.0
+    },
+    "jednostka": {
+      "liczba": 0,
+      "procent": 0.0
+    }
+  },
+  "typy": {
+    "id": {
+      "str": 200
+    },
+    "nazwa": {
+      "str": 200
+    },
+    "cena": {
+      "float": 200
+    },
+    "waluta": {
+      "str": 200
+    },
+    "kategoria": {
+      "str": 200
+    },
+    "producent": {
+      "str": 200
+    },
+    "dostepnosc": {
+      "str": 200
+    },
+    "ocena": {
+      "float": 200
+    },
+    "liczba_opinii": {
+      "int": 200
+    },
+    "data_dodania": {
+      "str": 200
+    },
+    "gwarancja": {
+      "str": 200
+    },
+    "url": {
+      "str": 200
+    },
+    "sku": {
+      "str": 200
+    },
+    "podkategoria": {
+      "str": 200
+    },
+    "opis": {
+      "str": 200
+    },
+    "waga_g": {
+      "float": 160
+    },
+    "dlugosc_cm": {
+      "float": 200
+    },
+    "kolor": {
+      "str": 160
+    },
+    "material": {
+      "str": 200
+    },
+    "ean": {
+      "str": 200
+    },
+    "dostawca": {
+      "str": 200
+    },
+    "stawka_vat": {
+      "float": 200
+    },
+    "stan_magazynowy": {
+      "int": 200
+    },
+    "jednostka": {
+      "str": 200
+    }
+  },
+  "statystyki": {
+    "cena_EUR": {
+      "n": 40,
+      "srednia": 60.25,
+      "mediana": 60.25,
+      "moda": [],
+      "q1": 55.375,
+      "q3": 65.125,
+      "min": 50.5,
+      "max": 70.0
+    },
+    "cena_PLN": {
+      "n": 160,
+      "srednia": 67.6875,
+      "mediana": 60.0,
+      "moda": [],
+      "q1": 55.050000000000004,
+      "q3": 64.95,
+      "min": 50.1,
+      "max": 1299.9
+    },
+    "ocena": {
+      "n": 200,
+      "srednia": 4.5,
+      "mediana": 4.5,
+      "moda": [
+        4.5
+      ],
+      "q1": 4.5,
+      "q3": 4.5,
+      "min": 4.5,
+      "max": 4.5
+    },
+    "liczba_opinii": {
+      "n": 200,
+      "srednia": 201,
+      "mediana": 201.0,
+      "moda": [],
+      "q1": 101.5,
+      "q3": 300.5,
+      "min": 2,
+      "max": 400
+    },
+    "waga_g": {
+      "n": 160,
+      "srednia": 200.0,
+      "mediana": 200.0,
+      "moda": [],
+      "q1": 150.5,
+      "q3": 249.5,
+      "min": 101.0,
+      "max": 299.0
+    },
+    "dlugosc_cm": {
+      "n": 200,
+      "srednia": 210.05,
+      "mediana": 210.05,
+      "moda": [],
+      "q1": 205.075,
+      "q3": 215.025,
+      "min": 200.1,
+      "max": 220.0
+    },
+    "stawka_vat": {
+      "n": 200,
+      "srednia": 23.0,
+      "mediana": 23.0,
+      "moda": [
+        23.0
+      ],
+      "q1": 23.0,
+      "q3": 23.0,
+      "min": 23.0,
+      "max": 23.0
+    },
+    "stan_magazynowy": {
+      "n": 200,
+      "srednia": 100.5,
+      "mediana": 100.5,
+      "moda": [],
+      "q1": 50.75,
+      "q3": 150.25,
+      "min": 1,
+      "max": 200
+    }
+  },
+  "odstajace": {
+    "cena_EUR": [],
+    "cena_PLN": [
+      {
+        "id": "199",
+        "wartosc": 1299.9
+      }
+    ],
+    "ocena": [],
+    "liczba_opinii": [],
+    "waga_g": [],
+    "dlugosc_cm": [],
+    "stawka_vat": [],
+    "stan_magazynowy": []
+  },
+  "korelacja": {
+    "cechy": [
+      "stan_magazynowy",
+      "liczba_opinii"
+    ],
+    "n": 200,
+    "pearson_r": 1.0
+  }
+}

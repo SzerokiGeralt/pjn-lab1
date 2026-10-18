@@ -1,0 +1,47 @@
+{
+  "data_odniesienia": "2026-10-17",
+  "strony_katalogu": 5,
+  "strony_szczegolow": 200,
+  "rekordy_przed": 208,
+  "rekordy_po": 200,
+  "duplikaty_usuniete": 8,
+  "duplikaty_po": 0,
+  "struktury": {
+    "tabela": 124,
+    "karty": 84
+  },
+  "pola_z_danymi": [
+    "id",
+    "nazwa",
+    "cena",
+    "waluta",
+    "kategoria",
+    "producent",
+    "dostepnosc",
+    "ocena",
+    "liczba_opinii",
+    "data_dodania",
+    "gwarancja",
+    "url",
+    "sku",
+    "podkategoria",
+    "opis",
+    "waga_g",
+    "dlugosc_cm",
+    "kolor",
+    "material",
+    "ean",
+    "dostawca",
+    "stawka_vat",
+    "stan_magazynowy",
+    "jednostka"
+  ],
+  "odrzucone_wartosci": [],
+  "konflikty_duplikatow": [],
+  "test_http": {
+    "czas_s": 103.5,
+    "zadania": 205,
+    "minimalny_odstep_s": 0.5,
+    "dane_testowe": true
+  }
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "operacja": "awaria-json",
+    "proba": 1,
+    "blad": "Page.wait_for_selector: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator(\"#szczegolyProduktu h1\") to be visible\n",
+    "pliki": [
+      "001-awaria-json-proba-1.html",
+      "001-awaria-json-proba-1.png"
+    ],
+    "bledy_zapisu": []
+  }
+]
